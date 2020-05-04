@@ -11,7 +11,6 @@ script:
 - bundle exec rspec
 deploy:
   provider: heroku
-  api_key:
-    secure: 14be2eea-f01b-4eab-96cf-40a3c0203fcf
+  api_key: 14be2eea-f01b-4eab-96cf-40a3c0203fcf
   app: brownfield-of-dreams-tyler-ray
   run: rails db:migrate

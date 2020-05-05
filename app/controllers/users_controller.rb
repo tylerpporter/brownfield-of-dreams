@@ -5,6 +5,12 @@ class UsersController < ApplicationController
     end
     resp = conn.get('/user/repos')
     @repos = JSON.parse(resp.body, symbolize_names: true)[0..4]
+
+    resp = conn.get('/user/followers')
+    @followers = JSON.parse(resp.body, symbolize_names: true)
+
+    resp = conn.get('/user/following')
+    @following = JSON.parse(resp.body, symbolize_names: true)
   end
 
   def new

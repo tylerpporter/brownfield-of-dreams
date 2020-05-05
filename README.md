@@ -66,7 +66,7 @@ You can run the test suite with:
 $ bundle exec rspec
 ```
 
-If set up correctly, and assuming you have internet access and the Youtube API is functioning correctly, you should have all passing tests.
+If set up correctly, and assuming you have internet access and the Youtube API is functioning correctly, all of your tests should be passing. 
 
 ## Technologies
 * [Stimulus](https://github.com/stimulusjs/stimulus)

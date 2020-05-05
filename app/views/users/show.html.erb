@@ -19,6 +19,10 @@
           <p><%= link_to repo[:name], repo[:owner][:repos_url] %></p>
         </div>
       <% end %>
+      <h2>Followers</h2>
+      <% @followers.each do |follower| %>  
+        <p><%= link_to follower[:login], follower[:url] %></p>
+      <% end %>
     <% end %>
   </section>
 </section>

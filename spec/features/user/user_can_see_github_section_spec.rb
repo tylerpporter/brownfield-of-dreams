@@ -33,7 +33,7 @@ describe 'As a logged in user' do
       visit dashboard_path
 
       expect(page).to have_content("Github")
-      expect(page).to have_content("Followings")
+      expect(page).to have_content("Following")
     end
   end
 end

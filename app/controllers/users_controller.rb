@@ -8,8 +8,9 @@ class UsersController < ApplicationController
 
     resp = conn.get('/user/followers')
     @followers = JSON.parse(resp.body, symbolize_names: true)
-     resp = conn.get('/user/followers')
-    @followers = JSON.parse(resp.body, symbolize_names: true)
+
+    resp = conn.get('/user/following')
+    @following = JSON.parse(resp.body, symbolize_names: true)
   end
 
   def new

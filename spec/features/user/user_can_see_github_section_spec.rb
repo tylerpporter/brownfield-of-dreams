@@ -19,5 +19,6 @@ describe 'As a logged in user' do
       expect(page).to_not have_content("Github")
       expect(page).to_not have_content("Repos")
     end
+    
   end
 end

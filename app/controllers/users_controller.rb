@@ -1,16 +1,6 @@
 class UsersController < ApplicationController
   def show
-    conn = Faraday.new('https://api.github.com') do |req|
-      req.headers[:Authorization] = "token #{ENV['GITHUB_TOKEN']}"
-    end
-    resp = conn.get('/user/repos')
-    @repos = JSON.parse(resp.body, symbolize_names: true)[0..4]
-
-    resp = conn.get('/user/followers')
-    @followers = JSON.parse(resp.body, symbolize_names: true)
-
-    resp = conn.get('/user/following')
-    @following = JSON.parse(resp.body, symbolize_names: true)
+    @github = UserDashboard.create
   end
 
   def new

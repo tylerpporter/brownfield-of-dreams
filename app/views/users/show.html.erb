@@ -10,23 +10,27 @@
   <section>
     <h1>Bookmarked Segments</h1>
   </section>
-  <section>
+  <section class='github'>
     <% if current_user.token.present? %>
       <h1>Github</h1>
-      <h2>Repos</h2>
-      <% @repos.each do |repo| %>
-        <div class="repos">
-          <p><%= link_to repo[:name], repo[:owner][:repos_url] %></p>
-        </div>
-      <% end %>
-      <h2>Followers</h2>
-      <% @followers.each do |follower| %>  
-        <p><%= link_to follower[:login], follower[:html_url] %></p>
-      <% end %>
-      <h2>Following</h2>
-      <% @following.each do |follow| %>  
-        <p><%= link_to follow[:login], follow[:html_url] %></p>
-      <% end %>
+        <h2>Repos</h2>
+        <% @github.repos[0..4].each do |repo| %>
+          <div class='repos'>
+            <p><%= link_to repo.name, repo.url %></p>
+          </div>
+        <% end %>
+        <h2>Followers</h2>
+        <% @github.followers.each do |follower| %>
+          <div class='followers'>
+            <p><%= link_to follower.handle, follower.url %></p>
+          </div>
+        <% end %>
+        <h2>Following</h2>
+        <% @github.following.each do |follow| %>
+          <div class='following'>
+            <p><%= link_to follow.handle, follow.url %></p>
+          </div>
+        <% end %>
     <% end %>
   </section>
 </section>

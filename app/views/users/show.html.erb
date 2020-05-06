@@ -15,20 +15,20 @@
       <h1>Github</h1>
       <div class='repos'>
         <h2>Repos</h2>
-        <% @repos.each do |repo| %>
-          <p><%= link_to repo[:name], repo[:owner][:repos_url] %></p>
+        <% @github.repos.each do |repo| %>
+          <p><%= link_to repo.name, repo.url %></p>
         <% end %>
       </div>
       <div class='followers'>
         <h2>Followers</h2>
-        <% @followers.each do |follower| %>
-          <p><%= link_to follower[:login], follower[:html_url] %></p>
+        <% @github.followers.each do |follower| %>
+          <p><%= link_to follower.handle, follower.url %></p>
         <% end %>
       </div>
       <div class='following'>
         <h2>Following</h2>
-        <% @following.each do |follow| %>
-          <p><%= link_to follow[:login], follow[:html_url] %></p>
+        <% @github.following.each do |follow| %>
+          <p><%= link_to follow.handle, follow.url %></p>
         <% end %>
       </div>
     <% end %>

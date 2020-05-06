@@ -13,24 +13,24 @@
   <section class='github'>
     <% if current_user.token.present? %>
       <h1>Github</h1>
-      <div class='repos'>
         <h2>Repos</h2>
-        <% @github.repos.each do |repo| %>
-          <p><%= link_to repo.name, repo.url %></p>
+        <% @github.repos[0..4].each do |repo| %>
+          <div class='repos'>
+            <p><%= link_to repo.name, repo.url %></p>
+          </div>
         <% end %>
-      </div>
-      <div class='followers'>
         <h2>Followers</h2>
         <% @github.followers.each do |follower| %>
-          <p><%= link_to follower.handle, follower.url %></p>
+          <div class='followers'>
+            <p><%= link_to follower.handle, follower.url %></p>
+          </div>
         <% end %>
-      </div>
-      <div class='following'>
         <h2>Following</h2>
         <% @github.following.each do |follow| %>
-          <p><%= link_to follow.handle, follow.url %></p>
+          <div class='following'>
+            <p><%= link_to follow.handle, follow.url %></p>
+          </div>
         <% end %>
-      </div>
     <% end %>
   </section>
 </section>

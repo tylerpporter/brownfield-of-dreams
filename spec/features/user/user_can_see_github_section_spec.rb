@@ -9,14 +9,7 @@ describe 'As a logged in user' do
 
       expect(page).to have_content("Github")
 
-      within ".repos" do
-        expect(page).to have_content("Repos")
-        expect(page).to have_link("monster_shop_2001")
-        expect(page).to have_link("activerecord-obstacle-course")
-        expect(page).to have_link("adopt_dont_shop_2001")
-        expect(page).to have_link("adopt_dont_shop_paired")
-        expect(page).to have_link("b2-mid-mod")
-      end
+      expect(page).to have_css('.repos', count: 5)
     end
     it 'does not see a Github section if I do not have a token' do
       user = create(:user)
@@ -30,22 +23,16 @@ describe 'As a logged in user' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       visit dashboard_path
 
-      within '.followers' do
-        expect(page).to have_content('Followers')
-        expect(page).to have_link('alex-latham')
-        expect(page).to have_link('javier-aguilar')
-      end
+      expect(page).to have_content('Followers')
+      expect(page).to have_css('.followers')
     end
     it 'sees a section called followers and a list of the users followers' do
       user = create(:user, token: "token #{ENV['GITHUB_TOKEN']}")
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       visit dashboard_path
 
-      within '.following' do
-        expect(page).to have_content('Following')
-        expect(page).to have_content('javier-aguilar')
-        expect(page).to have_content('itemniner')
-      end
+      expect(page).to have_content('Following')
+      expect(page).to have_css('.following')
     end
   end
 end

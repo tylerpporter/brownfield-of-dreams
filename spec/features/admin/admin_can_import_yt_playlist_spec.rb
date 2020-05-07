@@ -26,6 +26,9 @@ describe 'As an Admin' do
       click_link "View it here"
 
       expect(current_path).to eq(tutorial_path(tutorial.id))
+      expect(tutorial.videos.sample.tutorial_id).to_not be_nil
+      expect(tutorial.videos.sample.tutorial_id).to eq(tutorial.id)
+      expect(page).to have_link(tutorial.videos.sample.title)
     end
   end
 end

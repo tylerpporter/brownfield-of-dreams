@@ -1,8 +1,7 @@
 class PlaylistVideo 
   def initialize(video_id)
     @video_id = video_id[:contentDetails][:videoId]
-    youtube = YoutubeService.new
-    @info = youtube.video_info(@video_id)
+    @info = YoutubeService.new.video_info(@video_id)
   end
 
   def title

@@ -1,0 +1,31 @@
+require 'rails_helper'
+
+describe 'As an Admin' do
+  before :each do
+    @admin = create(:admin)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
+  end
+  describe 'When I visit /admin/tutorials/new' do
+    it 'can import a youtube playlist for a new tutorial' do
+      visit new_admin_tutorial_path
+      click_link "Import YouTube Playlist"
+
+      expect(current_path).to eq('/admin/import/new')
+
+      fill_in 'Title', with: 'Another How-To'
+      fill_in 'Description', with: "Just another how-to tutorial."
+      fill_in 'Thumbnail', with: "https://www.healthline.com/hlcmsresource/images/Image-Galleries/Onychauxis/thumb-732x549-thumbnail.jpg"
+      fill_in 'Playlist', with: "PLRcB4n4CGcy8Qf_8pZJOOFLJbc8I5xtHH"
+      click_button 'Create'
+
+      tutorial = Tutorial.last
+
+      expect(current_path).to eq(admin_dashboard_path)
+      expect(page).to have_content("Successfully created tutorial. View it here.")
+
+      click_link "View it here"
+
+      expect(current_path).to eq(tutorial_path(tutorial.id))
+    end
+  end
+end

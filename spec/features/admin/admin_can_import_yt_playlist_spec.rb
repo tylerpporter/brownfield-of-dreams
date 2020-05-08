@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'webmock/rspec'
 
 describe 'As an Admin' do
   before :each do

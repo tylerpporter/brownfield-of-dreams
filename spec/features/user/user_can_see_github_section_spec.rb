@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'As a logged in user' do
+describe 'As a logged in user', :vcr do
   describe 'When I visit /dashboard' do
     it 'see a Github section with a list of 5 of my repositories if I have a token' do
       user = create(:user, token: "token #{ENV['GITHUB_TOKEN']}")

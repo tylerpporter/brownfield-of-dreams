@@ -15,7 +15,7 @@ describe 'As an Admin' do
       fill_in 'Title', with: 'Another How-To'
       fill_in 'Description', with: "Just another how-to tutorial."
       fill_in 'Thumbnail', with: "https://www.healthline.com/hlcmsresource/images/Image-Galleries/Onychauxis/thumb-732x549-thumbnail.jpg"
-      fill_in 'Playlist', with: "PLRcB4n4CGcy8Qf_8pZJOOFLJbc8I5xtHH"
+      fill_in 'Playlist', with: "PL795aDbK_A8F5VWD4otZOXutge7rEugKC"
       click_button 'Create'
 
       tutorial = Tutorial.last

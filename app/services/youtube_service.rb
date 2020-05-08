@@ -9,6 +9,14 @@ class YoutubeService
     params = { part: 'contentDetails', maxResults: 50, playlistId: id }
 
     get_json('youtube/v3/playlistItems', params)
+  end  
+  
+  def next_page(id)
+    info = playlist(id) 
+
+    params = { part: 'contentDetails', pageToken: info[:nextPageToken], maxResults: 50, playlistId: id }
+
+    get_json('youtube/v3/playlistItems', params)
   end
 
   private

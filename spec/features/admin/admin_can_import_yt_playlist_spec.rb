@@ -29,6 +29,7 @@ describe 'As an Admin' do
       expect(tutorial.videos.sample.tutorial_id).to_not be_nil
       expect(tutorial.videos.sample.tutorial_id).to eq(tutorial.id)
       expect(page).to have_link(tutorial.videos.sample.title)
+      expect(tutorial.videos.size).to eq(57)
     end
   end
 end

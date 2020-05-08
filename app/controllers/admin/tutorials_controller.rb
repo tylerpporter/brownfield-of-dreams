@@ -10,18 +10,12 @@ class Admin::TutorialsController < Admin::BaseController
     playlist[:items].each do |video|
       create_video(video, tutorial)
     end
+    paginate(youtube, tutorial)
 
-    loop do 
-      playlist = youtube.next_page(params[:playlist_id])
-      playlist[:items].each do |video|
-        create_video(video, tutorial)
-      end
-      break if playlist[:nextPageToken].nil?
-    end
     flash[:success] = "Successfully created tutorial. #{view_context.link_to 'View it here', tutorial_path(tutorial.id)}.".html_safe
     redirect_to admin_dashboard_path
   end
-  
+
   def new
     @tutorial = Tutorial.new
   end
@@ -41,6 +35,16 @@ class Admin::TutorialsController < Admin::BaseController
   end
   
   private
+
+  def paginate(youtube, tutorial)
+    loop do 
+      playlist = youtube.next_page(params[:playlist_id])
+      playlist[:items].each do |video|
+        create_video(video, tutorial)
+      end
+      break if playlist[:nextPageToken].nil?
+    end
+  end
   
   def create_video(video, tutorial)
     vid = PlaylistVideo.new(video)

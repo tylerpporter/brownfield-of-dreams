@@ -5,8 +5,9 @@ describe 'As an Admin' do
     @admin = create(:admin)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
   end
-  describe 'When I visit /admin/tutorials/new' do
+  describe 'When I visit /admin/tutorials/new', :vcr do
     it 'can import a youtube playlist for a new tutorial' do
+
       visit new_admin_tutorial_path
       click_link "Import YouTube Playlist"
 

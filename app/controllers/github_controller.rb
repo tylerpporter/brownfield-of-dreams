@@ -5,7 +5,6 @@ class GithubController < ApplicationController
     uid = response[:uid]
     user_params = {token: token, uid: uid}
     current_user.update(user_params)
-    require "pry"; binding.pry
     redirect_to dashboard_path
   end
 end

@@ -10,7 +10,7 @@ class GithubRepo
       resp = conn.get('/user/repos')
       repos = JSON.parse(resp.body, symbolize_names: true)
       repos.each do |repo|
-        @all << GithubRepo.new(repo[:name], repo[:owner][:repos_url])
+        @all << GithubRepo.new(repo[:name], repo[:owner][:html_url])
       end
     end
   end

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
     resources :videos, only: [:edit, :update, :destroy]
 
-    get '/import/new', to: 'import#new', as: :import 
+    get '/import/new', to: 'import#new', as: :import
 
     namespace :api do
       namespace :v1 do
@@ -25,6 +25,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get '/auth/github', as: :github_login
+  get '/auth/github/callback', to: 'github#create'
 
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"

@@ -7,8 +7,8 @@ class GithubFollower
   class << self
     attr_reader :followers, :following
 
-    def create
-      conn = Connectable.conn('https://api.github.com')
+    def create(current_user)
+      conn = Connectable.conn('https://api.github.com', current_user)
       followers = JSON.parse(conn.get('/user/followers')
                       .body, symbolize_names: true)
       following = JSON.parse(conn.get('/user/following')

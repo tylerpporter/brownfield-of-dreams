@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
-    @github = UserDashboard.create
+    @github = UserDashboard.create(current_user)
+    require "pry"; binding.pry
   end
 
   def new

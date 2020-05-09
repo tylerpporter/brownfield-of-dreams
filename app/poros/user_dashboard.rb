@@ -10,9 +10,9 @@ class UserDashboard
     @following = GithubFollower.following
   end
 
-  def self.create
-    GithubRepo.create
-    GithubFollower.create
+  def self.create(current_user)
+    GithubRepo.create(current_user)
+    GithubFollower.create(current_user)
     UserDashboard.new
   end
 end

@@ -4,7 +4,7 @@ describe 'As a user' , :vcr do
   before do
     Rails.application.env_config["omniauth.auth"] = OmniAuth.config.mock_auth[:github]
   end
-  scenario 'I can connect to Github' do
+  xscenario 'I can connect to Github' do
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit dashboard_path

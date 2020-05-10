@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
-    @github = UserDashboard.create(current_user)
+    GithubService.user = current_user
+    @github = GithubDashboard.create
   end
 
   def new

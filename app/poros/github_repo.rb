@@ -1,16 +1,10 @@
-require_relative 'connectable'
-
 class GithubRepo
-  extend Connectable
   @all = []
   class << self
     attr_reader :all
-    def create(current_user)
-      conn = Connectable.conn('https://api.github.com', current_user)
-      resp = conn.get('/user/repos')
-      repos = JSON.parse(resp.body, symbolize_names: true)
-      repos.each do |repo|
-        @all << GithubRepo.new(repo[:name], repo[:owner][:html_url])
+    def create
+      GithubService.repos.each do |repo|
+        @all << new(repo[:name], repo[:owner][:html_url])
       end
     end
   end

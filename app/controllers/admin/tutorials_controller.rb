@@ -26,8 +26,7 @@ class Admin::TutorialsController < Admin::BaseController
   end
 
   def destroy
-    tutorial = Tutorial.find(params[:id])
-    flash[:success] = "#{tutorial.title} tagged!" if tutorial.destroy
+    Tutorial.destroy(params[:id])
     redirect_to admin_dashboard_path
   end
 

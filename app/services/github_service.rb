@@ -1,7 +1,7 @@
 class GithubService
-  @user = nil
+  @token = nil
   class << self
-    attr_accessor :user
+    attr_accessor :token
     def repos
       resp = conn.get('/user/repos')
       JSON.parse(resp.body, symbolize_names: true)
@@ -16,7 +16,7 @@ class GithubService
 
     def conn
       Faraday.new('https://api.github.com') do |req|
-        req.headers[:Authorization] = "token #{@user.token}"
+        req.headers[:Authorization] = "token #{@token}"
       end
     end
   end

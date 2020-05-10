@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
-    GithubService.user = current_user
-    @github = GithubDashboard.create
+    GithubService.token = current_user.token
+    @github = GithubDashboard.create unless current_user.token.nil?
   end
 
   def new

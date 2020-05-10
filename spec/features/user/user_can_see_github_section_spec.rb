@@ -26,7 +26,7 @@ describe 'As a logged in user', :vcr do
       expect(page).to have_content('Followers')
       expect(page).to have_css('.followers')
     end
-    it 'sees a section called followers and a list of the users followers' do
+    it 'sees a section with all of the users that the current user is following' do
       user = create(:user, token: "#{ENV['GITHUB_TOKEN']}")
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       visit dashboard_path

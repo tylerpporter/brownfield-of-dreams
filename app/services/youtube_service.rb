@@ -1,21 +1,22 @@
 class YoutubeService
   def video_info(id)
     params = { part: 'snippet,contentDetails,statistics', id: id }
-
     get_json('youtube/v3/videos', params)
   end
 
   def playlist(id)
     params = { part: 'contentDetails', maxResults: 50, playlistId: id }
-
     get_json('youtube/v3/playlistItems', params)
-  end  
-  
+  end
+
   def next_page(id)
-    info = playlist(id) 
-
-    params = { part: 'contentDetails', pageToken: info[:nextPageToken], maxResults: 50, playlistId: id }
-
+    info = playlist(id)
+    params = {
+      part: 'contentDetails',
+      pageToken: info[:nextPageToken],
+      maxResults: 50,
+      playlistId: id
+    }
     get_json('youtube/v3/playlistItems', params)
   end
 

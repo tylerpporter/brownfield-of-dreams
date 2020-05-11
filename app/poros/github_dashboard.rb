@@ -1,7 +1,4 @@
-require_relative 'github_repo'
-require_relative 'github_follower'
-
-class UserDashboard
+class GithubDashboard
   attr_reader :repos, :followers, :following
 
   def initialize
@@ -13,6 +10,6 @@ class UserDashboard
   def self.create
     GithubRepo.create
     GithubFollower.create
-    UserDashboard.new
+    new
   end
 end

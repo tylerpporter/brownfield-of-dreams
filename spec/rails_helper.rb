@@ -47,3 +47,5 @@ VCR.configure do |config|
   config.filter_sensitive_data('<GITHUB_TOKEN') { ENV['GITHUB_TOKEN'] }
   config.configure_rspec_metadata!
 end
+
+OmniAuth.config.test_mode = true 

@@ -5,22 +5,10 @@ class Admin::TutorialsController < Admin::BaseController
 
   def create
     if params[:playlist_id]
-      youtube = YoutubeService.new
-      playlist = youtube.playlist(params[:playlist_id])
-      tutorial = Tutorial.create(import_tutorial_params)
-      playlist[:items].each { |vid| create_video(vid, tutorial) }
-      paginate(youtube, tutorial)
-      success(tutorial)
-      redirect_to admin_dashboard_path
+      create_with_playlist
     else
       tutorial = Tutorial.create(tutorial_params)
-      if tutorial.save
-        flash[:success] = "Successfully created tutorial"
-        redirect_to tutorial_path(tutorial.id)
-      else
-        flash[:error] = tutorial.errors.full_messages.to_sentence
-        redirect_to new_admin_tutorial_path
-      end
+      tutorial.save ? success(tutorial) : failure(tutorial)
     end
   end
 
@@ -42,6 +30,16 @@ class Admin::TutorialsController < Admin::BaseController
   end
 
   private
+
+  def create_with_playlist
+    youtube = YoutubeService.new
+    playlist = youtube.playlist(params[:playlist_id])
+    tutorial = Tutorial.create(import_tutorial_params)
+    playlist[:items].each { |vid| create_video(vid, tutorial) }
+    paginate(youtube, tutorial)
+    import_success(tutorial)
+    redirect_to admin_dashboard_path
+  end
 
   def paginate(youtube, tutorial)
     loop do
@@ -65,6 +63,16 @@ class Admin::TutorialsController < Admin::BaseController
   end
 
   def success(tutorial)
+    flash[:success] = "Successfully created tutorial"
+    redirect_to tutorial_path(tutorial.id)
+  end
+
+  def failure(tutorial)
+    flash[:error] = tutorial.errors.full_messages.to_sentence
+    redirect_to new_admin_tutorial_path
+  end
+
+  def import_success(tutorial)
     flash[:success] =
       "Successfully created tutorial.
       #{view_context.link_to 'View it here', tutorial_path(tutorial.id)}."

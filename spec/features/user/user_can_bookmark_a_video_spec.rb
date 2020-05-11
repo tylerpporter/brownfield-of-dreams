@@ -77,4 +77,17 @@ describe 'A registered user' do
       expect(page).to_not have_link(video3.title)
     end
   end
+
+  it 'user must be logged-in to bookmark a video' do
+    tutorial= create(:tutorial)
+    video = create(:video, tutorial_id: tutorial.id)
+
+    visit tutorial_path(tutorial.id)
+
+    click_on "Bookmark"
+
+    expect(current_path).to eq(login_path)
+    expect(page).to have_content('User must login to bookmark videos.')
+    expect(UserVideo.all).to be_empty
+  end
 end

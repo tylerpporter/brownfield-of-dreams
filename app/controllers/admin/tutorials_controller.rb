@@ -63,7 +63,7 @@ class Admin::TutorialsController < Admin::BaseController
   end
 
   def success(tutorial)
-    flash[:success] = "Successfully created tutorial"
+    flash[:success] = 'Successfully created tutorial'
     redirect_to tutorial_path(tutorial.id)
   end
 

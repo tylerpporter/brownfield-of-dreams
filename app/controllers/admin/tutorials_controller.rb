@@ -4,13 +4,24 @@ class Admin::TutorialsController < Admin::BaseController
   end
 
   def create
-    youtube = YoutubeService.new
-    playlist = youtube.playlist(params[:playlist_id])
-    tutorial = Tutorial.create(import_tutorial_params)
-    playlist[:items].each { |vid| create_video(vid, tutorial) }
-    paginate(youtube, tutorial)
-    success(tutorial)
-    redirect_to admin_dashboard_path
+    if params[:playlist_id]
+      youtube = YoutubeService.new
+      playlist = youtube.playlist(params[:playlist_id])
+      tutorial = Tutorial.create(import_tutorial_params)
+      playlist[:items].each { |vid| create_video(vid, tutorial) }
+      paginate(youtube, tutorial)
+      success(tutorial)
+      redirect_to admin_dashboard_path
+    else
+      tutorial = Tutorial.create(tutorial_params)
+      if tutorial.save
+        flash[:success] = "Successfully created tutorial"
+        redirect_to tutorial_path(tutorial.id)
+      else
+        flash[:error] = tutorial.errors.full_messages.to_sentence
+        redirect_to new_admin_tutorial_path
+      end
+    end
   end
 
   def new
@@ -19,7 +30,7 @@ class Admin::TutorialsController < Admin::BaseController
 
   def update
     tutorial = Tutorial.find(params[:id])
-    if tutorial.update(tutorial_params)
+    if tutorial.update(update_tutorial_params)
       flash[:success] = "#{tutorial.title} tagged!"
     end
     redirect_to edit_admin_tutorial_path(tutorial)
@@ -61,10 +72,14 @@ class Admin::TutorialsController < Admin::BaseController
   end
 
   def tutorial_params
+    params.require(:tutorial).permit(:title, :description, :thumbnail)
+  end
+
+  def update_tutorial_params
     params.require(:tutorial).permit(:tag_list)
   end
 
   def import_tutorial_params
-    params.permit(:title, :desciption, :thumbnail, :playlist_id)
+    params.permit(:title, :description, :thumbnail, :playlist_id)
   end
 end

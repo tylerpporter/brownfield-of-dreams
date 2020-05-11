@@ -7,9 +7,16 @@
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
     <li> <%= current_user.email%> </li>
   </ul>
-  <section>
+  <section class='bookmarked'>
     <h1>Bookmarked Segments</h1>
-  </section>
+    <% @tutorials.each do |tutorial| %>
+    <section id="tutorial-<%= tutorial.id %>">
+      <h2><%= tutorial.title %></h2>
+      <%= tutorial.videos.each do |video| %>
+        <p><%= link_to video.title, video_path(video.id) %></p>
+      <% end %>
+    </section>
+    <% end %>
   <section class='github'>
     <% if current_user.token.present? %>
       <h1>Github</h1>

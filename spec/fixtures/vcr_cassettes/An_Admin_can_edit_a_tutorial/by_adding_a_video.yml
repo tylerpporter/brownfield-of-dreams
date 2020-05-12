@@ -25,7 +25,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Sun, 10 May 2020 18:46:29 GMT
+      - Tue, 12 May 2020 00:25:00 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -47,11 +47,11 @@ http_interactions:
       string: |
         {
           "kind": "youtube#videoListResponse",
-          "etag": "7-gtt8xvz34JlSAsI_JnXnAFjyY",
+          "etag": "tmIPYbS8sT0zWdbXGWuuvW-ZpoY",
           "items": [
             {
               "kind": "youtube#video",
-              "etag": "iHbQi8WWSG-psoN3hLEiFUnXUk8",
+              "etag": "7YzGgU7Pq_Mmz_9qVshvVJ1Wc3Q",
               "id": "J7ikFUlkP_k",
               "snippet": {
                 "publishedAt": "2018-07-23T20:59:59Z",
@@ -103,7 +103,7 @@ http_interactions:
                 "projection": "rectangular"
               },
               "statistics": {
-                "viewCount": "285",
+                "viewCount": "286",
                 "likeCount": "3",
                 "dislikeCount": "0",
                 "favoriteCount": "0",
@@ -117,5 +117,5 @@ http_interactions:
           }
         }
     http_version: null
-  recorded_at: Sun, 10 May 2020 18:46:29 GMT
+  recorded_at: Tue, 12 May 2020 00:25:00 GMT
 recorded_with: VCR 5.1.0

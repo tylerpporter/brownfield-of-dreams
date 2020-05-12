@@ -33,21 +33,18 @@ class Admin::TutorialsController < Admin::BaseController
 
   def create_with_playlist
     youtube = YoutubeService.new
-    playlist = youtube.playlist(params[:playlist_id])
     tutorial = Tutorial.create(import_tutorial_params)
-    playlist[:items].each { |vid| create_video(vid, tutorial) }
     paginate(youtube, tutorial)
     import_success(tutorial)
     redirect_to admin_dashboard_path
   end
 
   def paginate(youtube, tutorial)
-    loop do
-      playlist = youtube.next_page(params[:playlist_id])
-      playlist[:items].each do |video|
-        create_video(video, tutorial)
-      end
-      break if playlist[:nextPageToken].nil?
+    next_page_token = ''
+    until next_page_token.nil?
+      playlist = youtube.playlist(params[:playlist_id], next_page_token)
+      playlist[:items].each { |video| create_video(video, tutorial) }
+      next_page_token = playlist[:nextPageToken]
     end
   end
 

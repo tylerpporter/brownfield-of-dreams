@@ -8,7 +8,9 @@ RSpec.describe User, type: :model do
   end
 
   describe 'relationships' do
-    it { should have_many(:user_videos).dependent(:destroy)}
+    it {should have_many(:user_videos).dependent(:destroy)}
+    it {should have_many(:friends).through(:friendships)}
+    it {should have_many(:friendships).dependent(:destroy)}
   end
 
   describe 'roles' do

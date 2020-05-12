@@ -25,7 +25,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Tue, 12 May 2020 00:25:00 GMT
+      - Tue, 12 May 2020 20:19:09 GMT
       Server:
       - scaffolding on HTTPServer2
       Cache-Control:
@@ -37,9 +37,9 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Alt-Svc:
-      - h3-27=":443"; ma=2592000,h3-25=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q049=":443";
-        ma=2592000,h3-Q048=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443";
-        ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      - h3-27=":443"; ma=2592000,h3-25=":443"; ma=2592000,h3-T050=":443"; ma=2592000,h3-Q050=":443";
+        ma=2592000,h3-Q049=":443"; ma=2592000,h3-Q048=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
       Transfer-Encoding:
       - chunked
     body:
@@ -47,11 +47,11 @@ http_interactions:
       string: |
         {
           "kind": "youtube#videoListResponse",
-          "etag": "tmIPYbS8sT0zWdbXGWuuvW-ZpoY",
+          "etag": "S2R7nBzUJc7O4vZ6Ggz_FIEZz5c",
           "items": [
             {
               "kind": "youtube#video",
-              "etag": "7YzGgU7Pq_Mmz_9qVshvVJ1Wc3Q",
+              "etag": "Qm74ChZgcAEeEsXLoxM-sDrH96g",
               "id": "J7ikFUlkP_k",
               "snippet": {
                 "publishedAt": "2018-07-23T20:59:59Z",
@@ -103,7 +103,7 @@ http_interactions:
                 "projection": "rectangular"
               },
               "statistics": {
-                "viewCount": "286",
+                "viewCount": "287",
                 "likeCount": "3",
                 "dislikeCount": "0",
                 "favoriteCount": "0",
@@ -117,5 +117,5 @@ http_interactions:
           }
         }
     http_version: null
-  recorded_at: Tue, 12 May 2020 00:25:00 GMT
+  recorded_at: Tue, 12 May 2020 20:19:09 GMT
 recorded_with: VCR 5.1.0

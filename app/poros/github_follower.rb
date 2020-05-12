@@ -14,13 +14,23 @@ class GithubFollower
 
     def create_follower(follower, type)
       type << new(follower[:login],
-                  follower[:html_url])
+                  follower[:html_url],
+                  follower[:id])
     end
   end
-  attr_reader :handle, :url
+  attr_reader :handle, :url, :uid
 
-  def initialize(handle, url)
+  def initialize(handle, url, uid)
     @handle = handle
     @url = url
+    @uid = uid
+  end
+
+  def user?
+    User.find_by(uid: uid)
+  end
+
+  def user_id
+    user?.id if user?
   end
 end

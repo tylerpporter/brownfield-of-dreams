@@ -7,9 +7,9 @@ describe 'As a registered user', :vcr do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
     visit dashboard_path
 
-    expect(first('.followers')).to_not have_link('Add as Friend')
-
-    click_link 'Add as Friend'
+    within '.followers' do
+      click_link 'Add as Friend'
+    end
 
     expect(user1.friends).to eq([user2])
     expect(user2.friends).to eq([user1])

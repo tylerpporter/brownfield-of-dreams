@@ -27,19 +27,20 @@
           </div>
         <% end %>
         <h2>Followers</h2>
-        <% @github.followers.each do |follower| %>
-          <div class='followers'>
+        <section class='followers'>
+          <% @github.followers.each do |follower| %>
             <p><%= link_to follower.handle, follower.url %>
             <%= link_to '(Add as Friend)', friendships_path(friend_id: follower.user_id), method: 'post' if follower.user? %>
             </p>
-          </div>
-        <% end %>
+          <% end %>
+        </section>
+        <section class='following'>
+          <% @github.following.each do |follow| %>
+          <p><%= link_to follow.handle, follow.url %>
+            <%= link_to '(Add as Friend)', friendships_path(friend_id: follow.user_id), method: 'post' if follow.user? %>
+            <% end %>
+        </section>
         <h2>Following</h2>
-        <% @github.following.each do |follow| %>
-          <div class='following'>
-            <p><%= link_to follow.handle, follow.url %></p>
-          </div>
-        <% end %>
     <% end %>
   </section>
 </section>

@@ -17,6 +17,7 @@
       <% end %>
     </section>
     <% end %>
+  </section>
   <section class='github'>
     <% if current_user.token.present? %>
       <h1>Github</h1>
@@ -30,17 +31,23 @@
         <section class='followers'>
           <% @github.followers.each do |follower| %>
             <p><%= link_to follower.handle, follower.url %>
-            <%= link_to '(Add as Friend)', friendships_path(friend_id: follower.user_id), method: 'post' if follower.user? %>
+            <%= button_to '(Add as Friend)', friendships_path(friend_id: follower.user_id), method: 'post' if follower.user? %>
             </p>
           <% end %>
         </section>
+        <h2>Following</h2>
         <section class='following'>
           <% @github.following.each do |follow| %>
           <p><%= link_to follow.handle, follow.url %>
-            <%= link_to '(Add as Friend)', friendships_path(friend_id: follow.user_id), method: 'post' if follow.user? %>
+            <%= button_to '(Add as Friend)', friendships_path(friend_id: follow.user_id), method: 'post' if follow.user? %>
             <% end %>
         </section>
-        <h2>Following</h2>
+    <% end %>
+  </section>
+  <section class='friends'>
+    <h2>Friends</h2>
+    <% current_user.friends.each do |friend| %>
+      <p><%= friend.first_name %></p>
     <% end %>
   </section>
 </section>

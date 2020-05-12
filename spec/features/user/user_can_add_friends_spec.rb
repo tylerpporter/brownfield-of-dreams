@@ -8,11 +8,17 @@ describe 'As a registered user', :vcr do
     visit dashboard_path
 
     within '.followers' do
-      click_link 'Add as Friend'
+      click_button 'Add as Friend'
     end
+
+    user1.reload
 
     expect(user1.friends).to eq([user2])
     expect(user2.friends).to eq([user1])
     expect(Friendship.all.size).to eq(2)
+  
+    # within '.friends' do
+    #   expect(page).to have_content(user2.first_name)
+    # end
   end
 end

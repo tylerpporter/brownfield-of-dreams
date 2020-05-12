@@ -6,5 +6,6 @@ class User < ApplicationRecord
   validates :password_digest, presence: true
   validates :first_name, presence: true
   enum role: { default: 0, admin: 1 }
+  enum status: { inactive: 0, active: 1 }
   has_secure_password
 end

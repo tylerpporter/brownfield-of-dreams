@@ -9,7 +9,7 @@
 
     <% if current_user %>
       <div class="align-middle table-cell p3">
-        <%= button_to "Connect to Github", github_login_path %>
+        <%= button_to "Connect to Github", github_login_path if current_user.token.nil? %>
       </div>
       <div class="align-middle table-cell p3">
         <%= link_to "Profile", dashboard_path %>

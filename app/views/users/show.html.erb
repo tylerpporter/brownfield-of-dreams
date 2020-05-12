@@ -29,7 +29,9 @@
         <h2>Followers</h2>
         <% @github.followers.each do |follower| %>
           <div class='followers'>
-            <p><%= link_to follower.handle, follower.url %></p>
+            <p><%= link_to follower.handle, follower.url %>
+            <%= link_to '(Add as Friend)', friendships_path(friend_id: follower.user_id), method: 'post' if follower.user? %>
+            </p>
           </div>
         <% end %>
         <h2>Following</h2>

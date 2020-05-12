@@ -1,6 +1,6 @@
 class Friendship < ApplicationRecord
   belongs_to :user
-  belongs_to :friend, class_name: "User"
+  belongs_to :friend, class_name: 'User'
 
   class << self
     def create_reciprocal(user_id, friend_id)

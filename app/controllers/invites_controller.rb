@@ -11,11 +11,11 @@ class InvitesController < ApplicationController
 
   def send_invite(github_user)
     ActivationMailer.invite(github_user, current_user).deliver_now
-    flash[:success] = "Successfully sent invite!"
+    flash[:success] = 'Successfully sent invite!'
   end
 
   def failure
-    flash[:error] = "The Github user you selected doesn't have an email address associated with their account."
+    flash[:error] = "The Github user you selected doesn't have an email address\
+    associated with their account."
   end
-
 end

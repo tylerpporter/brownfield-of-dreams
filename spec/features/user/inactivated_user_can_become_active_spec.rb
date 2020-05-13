@@ -22,7 +22,10 @@ RSpec.describe 'as a unactivated user' do
       click_on'Create Account'
       user = User.last
       expect(activation_emails.count).to eq(1)
-      expect(activation_emails[0].body.encoded).to match('http://localhost:3000/users/1/activate')
+      expect(activation_emails[0].body.encoded).to match("http://localhost:3000/users/#{user.id}/activate")
+      visit "/users/#{user.id}/activate"
+      user.reload
+      expect(user.status).to eq('active')
     end
   end
 end

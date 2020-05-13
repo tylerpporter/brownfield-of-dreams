@@ -12,6 +12,7 @@ script:
 - yarn
 - bundle exec rails db:{create,migrate} RAILS_ENV=test
 - bundle exec rspec
+- rails db:schema:load
 deploy:
   provider: heroku
   api_key:

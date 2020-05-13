@@ -9,7 +9,8 @@ describe 'As a user' , :vcr do
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
       provider: 'github',
       uid: '12345',
-      credentials:{token: ENV['GITHUB_TOKEN']}
+      credentials:{token: ENV['GITHUB_TOKEN']},
+      info:{nickname: 'tylerpporter'}
       })
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -18,7 +19,7 @@ describe 'As a user' , :vcr do
     expect(user.uid).to eq(nil)
 
     click_button "Connect to Github"
-    
+
     expect(user.uid).to eq('12345')
     expect(current_path).to eq(dashboard_path)
   end

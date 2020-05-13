@@ -1,6 +1,6 @@
 class ActivationController < ApplicationController
   def show
-    @message = "Thank you! Your account has been activated."
+    @message = 'Thank you! Your account has been activated.'
   end
 
   def update

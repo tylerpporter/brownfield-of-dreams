@@ -1,23 +1,36 @@
-langauge: ruby
-rbenv:
-- 2.5.3
-addons:
-  postgresql: 9.6
-  chrome: stable
-dist: xenial
-before_install:
-    - yes | gem update --system --force
-    - gem install bundler
-script:
-- yarn
-- bundle exec rake environment db:{drop,create,migrate} DISABLE_DATABASE_ENVIRONMENT_CHECK=1
-- bundle exec rspec
-deploy:
-  provider: heroku
-  api_key:
-    secure: lA379ta3t2Vm202QrKsNhSUJZL0AROxH+Z+SnULpMgS2JZJFVvPK3CdSTXL1HlP/6L3Oa09hoAS7MvnEAGXn449JWsRhbJBdSU2eAq+P8wTSH1ok6JXo6z6codMj4cfFh6x5XG2wH8yIVQUtjWRzZmrZsjcuaOnHDYSZlVKl4MRijmWb+duUA0jKpf1pvT7C1uXQemzaii1AcNBBT1MojjFJSKB8yuHAsad5gJnFbIs9h8EBwd9zBqSrxQnbpRJk42Vk3kdCDs4epTsHowtzUwdRXakeEOkUk7v5kPmrZTeYhucQXj5xDE9O/c7fORM0ZR/oISCu8ZAagi0GwGPOFvC3NxJasVpFdf/j44eWwOhpSF64Zm65BLVKqZ+34ZaGBo0owrrFXHNgi3fFumhbeONXNzgBL6hFmTwLPGgV/WGe/LZUyOlk36Jii7je0aALL7ZylqcqiMJ2lD+Fv8g/T+VjIUTUqMT87pa0426ylU8yr2zH+NP2pKjpUNY8b2VASZAnqgObcwKbqeZRLsL0E0GHeTO+h1AXx12kd1PTk/xRPJQA1J1Ml5Op/TUqaCqZeiuw+jV6pe1clYCkSyxvmZOAYCss0g7uuZvR1GKGu+lFrzJ8Gcn8m5JXx9hLcqytSVNBqwf2Q0Vo1XAKpi06r/JVu0VKWG+39o/9Q+5xiZc=
-  app: brownfield-of-dreams-tyler-ray
-  run: rails db:migrate
+  
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - nvm install v11.12.0
+  - nvm use v11.12.0
+  - yarn add stimulus
+env:
+  - ENV['RAILS_ENV'] = 'test'
+
+
+
+# langauge: ruby
+# rbenv:
+# - 2.5.3
+# addons:
+#   postgresql: 9.6
+#   chrome: stable
+# dist: xenial
+# before_install:
+#     - yes | gem update --system --force
+#     - gem install bundler
+# script:
+# - yarn
+# - bundle exec rake environment db:{drop,create,migrate} DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+# - bundle exec rspec
+# deploy:
+#   provider: heroku
+#   api_key:
+#     secure: lA379ta3t2Vm202QrKsNhSUJZL0AROxH+Z+SnULpMgS2JZJFVvPK3CdSTXL1HlP/6L3Oa09hoAS7MvnEAGXn449JWsRhbJBdSU2eAq+P8wTSH1ok6JXo6z6codMj4cfFh6x5XG2wH8yIVQUtjWRzZmrZsjcuaOnHDYSZlVKl4MRijmWb+duUA0jKpf1pvT7C1uXQemzaii1AcNBBT1MojjFJSKB8yuHAsad5gJnFbIs9h8EBwd9zBqSrxQnbpRJk42Vk3kdCDs4epTsHowtzUwdRXakeEOkUk7v5kPmrZTeYhucQXj5xDE9O/c7fORM0ZR/oISCu8ZAagi0GwGPOFvC3NxJasVpFdf/j44eWwOhpSF64Zm65BLVKqZ+34ZaGBo0owrrFXHNgi3fFumhbeONXNzgBL6hFmTwLPGgV/WGe/LZUyOlk36Jii7je0aALL7ZylqcqiMJ2lD+Fv8g/T+VjIUTUqMT87pa0426ylU8yr2zH+NP2pKjpUNY8b2VASZAnqgObcwKbqeZRLsL0E0GHeTO+h1AXx12kd1PTk/xRPJQA1J1Ml5Op/TUqaCqZeiuw+jV6pe1clYCkSyxvmZOAYCss0g7uuZvR1GKGu+lFrzJ8Gcn8m5JXx9hLcqytSVNBqwf2Q0Vo1XAKpi06r/JVu0VKWG+39o/9Q+5xiZc=
+#   app: brownfield-of-dreams-tyler-ray
+#   run: rails db:migrate
 
 
 # before_install: gem install bundler

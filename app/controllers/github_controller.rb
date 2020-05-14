@@ -6,7 +6,7 @@ class GithubController < ApplicationController
       uid: response[:uid].to_i,
       username: response[:info][:nickname]
     }
-    current_user.update(params)
+    current_user.update_columns(params)
     redirect_to dashboard_path
   end
 end

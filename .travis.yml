@@ -10,7 +10,8 @@ before_install:
     - gem install bundler
 script:
 - yarn
-- bundle exec rails db:{create,migrate} RAILS_ENV=test
+- bundle exec rails db:create RAILS_ENV=test
+- TEST_ENV_NUMBER=1 bin/rails db:environment:set RAILS_ENV=test
 - bundle exec rspec
 deploy:
   provider: heroku

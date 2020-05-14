@@ -2,7 +2,10 @@
   <h1> <%= current_user.first_name %>'s Dashboard </h1>
   <% if current_user.status == 'inactive' %>
     <strong>This account has not yet been activated. Please check your email</strong>
+  <% else %>
+    <h3>Status: Active</h3>
   <% end %>
+  <%= link_to 'Send an Invite', invite_path if current_user.token.present? %>
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
   <h3>Account Details</h3>
   <ul>

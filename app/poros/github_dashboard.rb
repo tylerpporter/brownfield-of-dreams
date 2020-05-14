@@ -3,8 +3,8 @@ class GithubDashboard
 
   def initialize
     @repos = GithubRepo.all
-    @followers = GithubFollower.followers
-    @following = GithubFollower.following
+    @followers = GithubFollower.followers.uniq
+    @following = GithubFollower.following.uniq
   end
 
   def self.create

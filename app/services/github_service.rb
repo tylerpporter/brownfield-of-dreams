@@ -12,6 +12,11 @@ class GithubService
           .body, symbolize_names: true)
     end
 
+    def get_user(username)
+      resp = conn.get("/users/#{username}")
+      JSON.parse(resp.body, symbolize_names: true)
+    end
+
     private
 
     def conn

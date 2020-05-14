@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   get '/auth/github', as: :github_login
   get '/auth/github/callback', to: 'github#create'
 
+  get '/invite', to: "invites#new"
+  post '/invite', to: "invites#create"
+
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
@@ -43,7 +46,7 @@ Rails.application.routes.draw do
   get '/video', to: 'video#show'
 
   get '/users/:user_id/activate', to: 'activation#update', as: :activation
-  resources :users, only: [:new, :create, :update, :edit] 
+  resources :users, only: [:new, :create, :update, :edit]
   get '/activate', to: 'activation#show'
 
   resources :tutorials, only: [:show, :index] do

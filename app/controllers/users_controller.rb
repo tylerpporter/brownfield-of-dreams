@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   def show
-    @tutorials = Tutorial.joins(videos: [:user_videos]).distinct
+    @tutorials ||= Tutorial.joins(videos: [:user_videos]).distinct
     GithubService.token = current_user.token
-    @github = GithubDashboard.create unless current_user.token.nil?
+    @github ||= GithubDashboard.create unless current_user.token.nil?
   end
 
   def new

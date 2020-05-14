@@ -17,7 +17,7 @@
     <% @tutorials.each do |tutorial| %>
     <section id="tutorial-<%= tutorial.id %>">
       <h2><%= tutorial.title %></h2>
-      <%= tutorial.videos.each do |video| %>
+      <% tutorial.videos.each do |video| %>
         <p><%= link_to video.title, video_path(video.id) %></p>
       <% end %>
     </section>

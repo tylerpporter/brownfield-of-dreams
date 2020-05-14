@@ -1,9 +1,9 @@
 class GithubFollower
-  @followers = []
-  @following = []
   class << self
     attr_reader :followers, :following
     def create
+      @followers = []
+      @following = []
       followers = GithubService.follower('followers')
       following = GithubService.follower('following')
       followers.each { |follower| create_follower(follower, @followers) }

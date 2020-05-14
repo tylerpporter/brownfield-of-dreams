@@ -6,7 +6,6 @@ class Friendship < ApplicationRecord
     def create_reciprocal(user_id, friend_id)
       user = Friendship.create(user_id: user_id, friend_id: friend_id)
       friend = Friendship.create(user_id: friend_id, friend_id: user_id)
-      [user, friend]
     end
 
     def destroy_reciprocal(user_id, friend_id)

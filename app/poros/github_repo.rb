@@ -1,8 +1,8 @@
 class GithubRepo
-  @all = []
   class << self
     attr_reader :all
     def create
+      @all = []
       GithubService.repos.each do |repo|
         @all << new(repo[:name], repo[:owner][:html_url])
       end

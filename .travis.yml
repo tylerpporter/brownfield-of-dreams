@@ -10,7 +10,7 @@ before_install:
     - gem install bundler
 script:
 - yarn
-- bundle exec rails db:{create,migrate} RAILS_ENV=test
+- bundle exec rake environment db:{drop,create,migrate} DISABLE_DATABASE_ENVIRONMENT_CHECK=1
 - bundle exec rspec
 deploy:
   provider: heroku

@@ -5,7 +5,7 @@ class EmailInvite
   end
 
   def message
-    "Hello #{@github_user[:login]}, #{@user.github_handle} has invited you to\
+    "Hello #{@github_user[:login]}, #{@user.username} has invited you to\
     join Brownfield."
   end
 end

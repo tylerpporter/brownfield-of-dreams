@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'As a registered user', :vcr do
   scenario 'I can send an email invite to a valid Github handle that has an email address' do
-    user = create(:user, token: "#{ENV['GITHUB_TOKEN']}", uid: 58486125, github_handle: 'itemniner')
+    user = create(:user, token: "#{ENV['GITHUB_TOKEN']}", uid: 58486125, username: 'itemniner')
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit dashboard_path
 
@@ -17,7 +17,7 @@ describe 'As a registered user', :vcr do
     expect(page).to have_content("Successfully sent invite!")
   end
   scenario 'I get an error message if I try to send an invite to an invalid Github handle or a handle that doesnt have an email address' do
-    user = create(:user, token: "#{ENV['GITHUB_TOKEN']}", uid: 58486125, github_handle: 'tylerpporter')
+    user = create(:user, token: "#{ENV['GITHUB_TOKEN']}", uid: 58486125, username: 'tylerpporter')
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit dashboard_path
     click_link 'Send an Invite'

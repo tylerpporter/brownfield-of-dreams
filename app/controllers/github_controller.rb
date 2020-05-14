@@ -4,7 +4,7 @@ class GithubController < ApplicationController
     params = {
       token: response[:credentials][:token],
       uid: response[:uid].to_i,
-      github_handle: response[:info][:nickname]
+      username: response[:info][:nickname]
     }
     current_user.update(params)
     redirect_to dashboard_path

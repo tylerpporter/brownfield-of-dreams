@@ -2,7 +2,7 @@ class InvitesController < ApplicationController
   def new; end
 
   def create
-    github_user = GithubService.get_user(params[:github_handle])
+    github_user = GithubService.get_user(params[:username])
     github_user[:email] ? send_invite(github_user) : failure
     redirect_to dashboard_path
   end

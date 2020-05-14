@@ -10,7 +10,7 @@ describe 'As a registered user', :vcr do
 
     expect(current_path).to eq(invite_path)
 
-    fill_in "Github handle", with: 'tylerpporter'
+    fill_in :username, with: 'tylerpporter'
     click_on "Send Invite"
 
     expect(current_path).to eq(dashboard_path)
@@ -21,7 +21,7 @@ describe 'As a registered user', :vcr do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     visit dashboard_path
     click_link 'Send an Invite'
-    fill_in "Github handle", with: 'itemniner'
+    fill_in :username, with: 'itemniner'
     click_on "Send Invite"
 
     expect(current_path).to eq(dashboard_path)
